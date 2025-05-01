@@ -6,5 +6,5 @@ Werkzeug==2.3.7
 SQLAlchemy==2.0.23
 python-dotenv==1.0.0
 gunicorn==21.2.0
-Flask-Tailwind==0.1.0
+Flask-Tailwind==0.2.2
 bleach==6.0.0 

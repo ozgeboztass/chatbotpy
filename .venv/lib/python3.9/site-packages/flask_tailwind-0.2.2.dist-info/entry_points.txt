@@ -1,0 +1,3 @@
+[flask.commands]
+tailwind=flask_tailwind.cli:tailwind
+

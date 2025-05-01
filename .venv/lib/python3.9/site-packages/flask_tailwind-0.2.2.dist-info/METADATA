@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: flask-tailwind
+Version: 0.2.2
+Summary: Flask+Tailwind integration.
+Home-page: https://github.com/abilian/flask-tailwind
+Author: Abilian SAS
+Author-email: contact@abilian.com
+Requires-Python: >=3.9,<4
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: Flask (>=2)
+Description-Content-Type: text/x-rst
+
+==============
+Flask-Tailwind
+==============
+
+
+.. image:: https://img.shields.io/pypi/v/flask-tailwind.svg
+        :target: https://pypi.python.org/pypi/flask-tailwind
+
+
+Plugin to simplify use of Tailwind from Flask.
+
+* Status: Alpha. Not documented.
+* Free software: MIT license
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This project is inspired by the `Django-Tailwind`_ project.
+
+This package was created with `Cookiecutter`_, using the `abilian/cookiecutter-abilian-python`_
+project template.
+
+.. _`Django-Tailwind`: https://github.com/timonweb/django-tailwind
+.. _`Cookiecutter`: https://github.com/audreyr/cookiecutter
+.. _`abilian/cookiecutter-abilian-python`: https://github.com/abilian/cookiecutter-abilian-python
+
