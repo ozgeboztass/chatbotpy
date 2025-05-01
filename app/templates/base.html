@@ -4,36 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Python Pro Level Instructor Exam{% endblock %}</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column;">
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: #f8fafc; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; color: #334155;">
     <!-- Header -->
-    <header style="background-color: #ffffff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-        <nav style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <a href="{{ url_for('main.index') }}" style="font-size: 1.5rem; font-weight: bold; color: #2563eb; text-decoration: none;">Python Pro Exam</a>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    {% if current_user.is_authenticated %}
-                        <span style="color: #374151;">Welcome, {{ current_user.username }}</span>
-                        <a href="{{ url_for('auth.logout') }}" style="padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 500;">Logout</a>
-                    {% else %}
-                        <a href="{{ url_for('auth.login') }}" style="padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 500;">Login</a>
-                        <a href="{{ url_for('auth.register') }}" style="padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 500;">Register</a>
-                    {% endif %}
-                </div>
+    <header style="background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); position: sticky; top: 0; z-index: 10;">
+        <nav style="max-width: 1200px; margin: 0 auto; padding: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <a href="{{ url_for('main.index') }}" style="font-size: 1.25rem; font-weight: 800; color: #2563eb; text-decoration: none; display: flex; align-items: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                Python Pro Exam
+            </a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                {% if current_user.is_authenticated %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="width: 2rem; height: 2rem; border-radius: 9999px; background-color: #3b82f6; color: white; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem; font-weight: 600; font-size: 0.875rem;">{{ current_user.username[0]|upper }}</div>
+                        <span style="color: #374151; font-weight: 500; margin-right: 1rem;">{{ current_user.username }}</span>
+                    </div>
+                    <a href="{{ url_for('auth.logout') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#dc2626'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#ef4444'; this.style.transform='translateY(0)'">Çıkış</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'">Giriş</a>
+                    <a href="{{ url_for('auth.register') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)'">Kayıt Ol</a>
+                {% endif %}
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main style="flex-grow: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+    <main style="flex-grow: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; width: 100%; box-sizing: border-box;" class="fade-in">
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer style="background-color: #1f2937; color: white; padding: 1.5rem 0; text-align: center;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <p style="font-size: 0.875rem;">Created by Python Pro Level Instructor Team</p>
-            <p style="font-size: 0.75rem; margin-top: 0.5rem;">© 2024 All rights reserved</p>
+    <footer style="background-color: #1e293b; color: #e2e8f0; padding: 2rem 0; margin-top: 3rem;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                        Python Pro Exam
+                    </h3>
+                    <p style="color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+                        Python Pro seviyesi eğitmenleri için hazırlanmış kapsamlı sınav platformu. Discord.py, Flask, Yapay Zeka, Bilgisayarlı Görü ve Doğal Dil İşleme alanlarında kendinizi test edin.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Hızlı Bağlantılar</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('main.index') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Ana Sayfa</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='discord') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Discord.py Sınavı</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='flask') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Flask Sınavı</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='ai') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Yapay Zeka Sınavı</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 1.5rem; margin-top: 1rem; text-align: center;">
+                <p style="font-size: 0.875rem; color: #94a3b8;">© 2024 Python Pro Level Instructor Exam. Tüm hakları saklıdır.</p>
+            </div>
         </div>
     </footer>
 </body>

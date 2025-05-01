@@ -3,14 +3,32 @@
 {% block title %}Quiz - {{ topic|title }}{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
-    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-bold text-gray-800">{{ topic|title }} Quiz</h1>
-            <div class="text-right">
-                <p class="text-sm text-gray-600">Question <span id="current-question">1</span> of <span id="total-questions">{{ questions|length }}</span></p>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                    <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+<div style="max-width: 64rem; margin: 0 auto; padding: 0 1rem;">
+    <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 2rem; margin-bottom: 2rem; transition: transform 0.2s;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 1.5rem; gap: 1.5rem;">
+            <div style="display: flex; align-items: center;">
+                <div style="width: 3rem; height: 3rem; border-radius: 9999px; background-color: #f0f9ff; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    {% if topic == 'discord' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    {% elif topic == 'flask' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    {% elif topic == 'ai' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 12h9"></path><path d="M12 2v10"></path></svg>
+                    {% elif topic == 'vision' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v11h4l-7 7-7-7h4z"></path></svg>
+                    {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4m0-4V6"></path></svg>
+                    {% endif %}
+                </div>
+                <h1 style="font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 700; color: #1f2937; margin: 0;">{{ topic|title }} Quiz</h1>
+            </div>
+            <div style="width: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <p style="font-size: 0.875rem; color: #6b7280; font-weight: 500; margin: 0;">İlerleme</p>
+                    <p style="font-size: 0.875rem; color: #4b5563; font-weight: 600; margin: 0;"><span id="current-question">1</span> / <span id="total-questions">{{ questions|length }}</span></p>
+                </div>
+                <div style="width: 100%; background-color: #e5e7eb; border-radius: 9999px; height: 0.5rem; overflow: hidden;">
+                    <div id="progress-bar" style="height: 100%; width: 0%; transition: width 0.3s ease-out;"></div>
                 </div>
             </div>
         </div>
@@ -20,21 +38,30 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             
             {% for question in questions %}
-            <div class="question-container {% if loop.index != 1 %}hidden{% endif %}" data-question-id="{{ question.id }}">
-                <div class="mb-6">
-                    <h2 class="text-xl font-semibold text-gray-700 mb-4">{{ question.question_text }}</h2>
+            {% if loop.index == 1 %}
+            <div class="question-container" id="question-{{ loop.index }}" style="display: block;" data-question-id="{{ question.id }}">
+            {% else %}
+            <div class="question-container" id="question-{{ loop.index }}" style="display: none;" data-question-id="{{ question.id }}">
+            {% endif %}
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="font-size: clamp(1.125rem, 3vw, 1.25rem); font-weight: 600; color: #374151; margin-bottom: 1.5rem; line-height: 1.5;">{{ question.question_text }}</h2>
                     
-                    <div class="space-y-3">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
                         {% for answer in question.answers %}
-                        <div class="flex items-center">
-                            <input type="radio" 
-                                   name="question_{{ question.id }}" 
-                                   value="{{ answer.id }}" 
-                                   id="answer_{{ answer.id }}"
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                        <div class="answer-option" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; transition: all 0.2s ease; overflow: hidden;">
                             <label for="answer_{{ answer.id }}" 
-                                   class="ml-2 text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-50 p-2 rounded w-full">
-                                {{ answer.answer_text }}
+                                   style="display: flex; align-items: center; padding: 1rem; cursor: pointer; width: 100%; transition: all 0.2s; user-select: none;"
+                                   onmouseover="this.style.backgroundColor='#f9fafb';" 
+                                   onmouseout="this.style.backgroundColor='white';">
+                                <input type="radio" 
+                                       name="question_{{ question.id }}" 
+                                       value="{{ answer.id }}" 
+                                       id="answer_{{ answer.id }}"
+                                       class="question-radio"
+                                       style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem;">
+                                <span style="font-size: 1rem; font-weight: 500; color: #374151;">
+                                    {{ answer.answer_text }}
+                                </span>
                             </label>
                         </div>
                         {% endfor %}
@@ -43,21 +70,35 @@
             </div>
             {% endfor %}
 
-            <div class="flex justify-between mt-6">
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
                 <button type="button" 
                         id="prev-btn" 
-                        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 hidden">
-                    Previous
+                        style="background-color: #f3f4f6; color: #4b5563; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; display: none; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);"
+                        onmouseover="this.style.backgroundColor='#e5e7eb'; this.style.color='#374151';" 
+                        onmouseout="this.style.backgroundColor='#f3f4f6'; this.style.color='#4b5563';">
+                    <div style="display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        Önceki
+                    </div>
                 </button>
                 <button type="button" 
                         id="next-btn" 
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Next
+                        class="theme-button"
+                        style="color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); margin-left: auto;">
+                    <div style="display: flex; align-items: center;">
+                        Sonraki
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
                 </button>
                 <button type="submit" 
                         id="submit-btn" 
-                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden">
-                    Submit Quiz
+                        style="background-color: #10b981; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; display: none; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);"
+                        onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)';" 
+                        onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)';">
+                    <div style="display: flex; align-items: center;">
+                        Sınavı Bitir
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
                 </button>
             </div>
         </form>
@@ -73,20 +114,71 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressBar = document.getElementById('progress-bar');
     const currentQuestionSpan = document.getElementById('current-question');
     let currentQuestion = 0;
+    
+    // Set theme-specific colors based on topic
+    const topic = '{{ topic }}';
+    let primaryColor, hoverColor, lightBgColor;
+    
+    if (topic === 'discord') {
+        primaryColor = '#2563eb';
+        hoverColor = '#1d4ed8';
+        lightBgColor = '#eff6ff';
+    } else if (topic === 'flask') {
+        primaryColor = '#10b981';
+        hoverColor = '#059669';
+        lightBgColor = '#ecfdf5';
+    } else if (topic === 'ai') {
+        primaryColor = '#8b5cf6';
+        hoverColor = '#7c3aed';
+        lightBgColor = '#f5f3ff';
+    } else if (topic === 'vision') {
+        primaryColor = '#ef4444';
+        hoverColor = '#dc2626';
+        lightBgColor = '#fef2f2';
+    } else {
+        primaryColor = '#f59e0b';
+        hoverColor = '#d97706';
+        lightBgColor = '#fffbeb';
+    }
+    
+    // Apply colors
+    progressBar.style.backgroundColor = primaryColor;
+    nextBtn.style.backgroundColor = primaryColor;
+    document.querySelectorAll('.question-radio').forEach(radio => {
+        radio.style.accentColor = primaryColor;
+    });
+    
+    // Set up hover events with JavaScript
+    nextBtn.addEventListener('mouseover', function() {
+        this.style.backgroundColor = hoverColor;
+        this.style.transform = 'translateY(-2px)';
+    });
+    
+    nextBtn.addEventListener('mouseout', function() {
+        this.style.backgroundColor = primaryColor;
+        this.style.transform = 'translateY(0)';
+    });
 
     function updateButtons() {
-        prevBtn.classList.toggle('hidden', currentQuestion === 0);
-        nextBtn.classList.toggle('hidden', currentQuestion === questions.length - 1);
-        submitBtn.classList.toggle('hidden', currentQuestion !== questions.length - 1);
+        prevBtn.style.display = currentQuestion === 0 ? 'none' : 'flex';
+        nextBtn.style.display = currentQuestion === questions.length - 1 ? 'none' : 'flex';
+        submitBtn.style.display = currentQuestion === questions.length - 1 ? 'flex' : 'none';
         
         const progress = ((currentQuestion + 1) / questions.length) * 100;
         progressBar.style.width = `${progress}%`;
         currentQuestionSpan.textContent = currentQuestion + 1;
+
+        // Add animation to the current question
+        questions.forEach((q, i) => {
+            if (i === currentQuestion) {
+                q.style.animation = 'fadeIn 0.5s';
+            }
+        });
     }
 
     function showQuestion(index) {
         questions.forEach((q, i) => {
-            q.classList.toggle('hidden', i !== index);
+            q.style.display = i === index ? 'block' : 'none';
         });
     }
 
@@ -99,12 +191,119 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     nextBtn.addEventListener('click', () => {
+        // Check if current question is answered
+        const currentQuestionElement = questions[currentQuestion];
+        const questionId = currentQuestionElement.getAttribute('data-question-id');
+        const selectedOption = document.querySelector(`input[name="question_${questionId}"]:checked`);
+
+        if (!selectedOption) {
+            // Animation shake if no answer selected
+            currentQuestionElement.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                currentQuestionElement.style.animation = '';
+            }, 500);
+            return;
+        }
+
         if (currentQuestion < questions.length - 1) {
             currentQuestion++;
             showQuestion(currentQuestion);
             updateButtons();
         }
     });
+
+    // Handle answer selection
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            // Reset all options in current question
+            const questionId = questions[currentQuestion].getAttribute('data-question-id');
+            const allOptions = document.querySelectorAll(`.question-container[data-question-id="${questionId}"] .answer-option`);
+            
+            allOptions.forEach(option => {
+                option.style.borderColor = '#e5e7eb';
+                option.style.backgroundColor = 'white';
+                const label = option.querySelector('label');
+                if (label) {
+                    label.style.backgroundColor = 'white';
+                }
+            });
+            
+            // Highlight selected option
+            const selectedOption = input.closest('.answer-option');
+            if (selectedOption) {
+                selectedOption.style.borderColor = primaryColor;
+                selectedOption.style.backgroundColor = lightBgColor;
+                const label = selectedOption.querySelector('label');
+                if (label) {
+                    label.style.backgroundColor = lightBgColor;
+                }
+            }
+        });
+    });
+
+    // Add keydown event listeners for navigation
+    document.addEventListener('keydown', function(event) {
+        // Navigate with arrow keys
+        if (event.key === 'ArrowRight' && currentQuestion < questions.length - 1) {
+            nextBtn.click();
+        } else if (event.key === 'ArrowLeft' && currentQuestion > 0) {
+            prevBtn.click();
+        }
+        
+        // Allow number keys 1-4 to select options
+        if (['1', '2', '3', '4'].includes(event.key)) {
+            const optionIndex = parseInt(event.key) - 1;
+            const currentQuestionElement = questions[currentQuestion];
+            const questionId = currentQuestionElement.getAttribute('data-question-id');
+            const options = document.querySelectorAll(`input[name="question_${questionId}"]`);
+            
+            if (options.length > optionIndex) {
+                options[optionIndex].checked = true;
+                options[optionIndex].dispatchEvent(new Event('change'));
+            }
+        }
+    });
+
+    // Make the quiz responsive
+    function adjustResponsive() {
+        const viewportWidth = window.innerWidth;
+        
+        if (viewportWidth < 640) {
+            // Small screen adjustments
+            document.querySelector('div[style*="max-width: 64rem"]').style.padding = '0 0.5rem';
+            document.querySelector('div[style*="border-radius: 0.75rem"]').style.padding = '1.25rem';
+            document.querySelectorAll('.answer-option label').forEach(label => {
+                label.style.padding = '0.75rem';
+            });
+        } else {
+            // Reset for larger screens
+            document.querySelector('div[style*="max-width: 64rem"]').style.padding = '0 1rem';
+            document.querySelector('div[style*="border-radius: 0.75rem"]').style.padding = '2rem';
+            document.querySelectorAll('.answer-option label').forEach(label => {
+                label.style.padding = '1rem';
+            });
+        }
+    }
+    
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Call on page load and window resize
+    adjustResponsive();
+    window.addEventListener('resize', adjustResponsive);
 
     updateButtons();
 });

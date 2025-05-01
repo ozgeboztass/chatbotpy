@@ -1,19 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Giriş Yap{% endblock %}
 
 {% block content %}
-<div style="max-width: 28rem; margin: 0 auto;">
-    <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem;">
-        <h1 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1.5rem; text-align: center;">Login</h1>
+<div style="max-width: 28rem; margin: 0 auto; padding: 1rem;">
+    <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 2rem; margin-bottom: 1.5rem; transition: transform 0.2s; animation: fadeIn 0.5s ease-out;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 4rem; height: 4rem; border-radius: 9999px; background-color: #ebf5ff; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <h1 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0;">Giriş Yap</h1>
+            <p style="color: #6b7280; margin-top: 0.5rem;">Sınav platformuna erişmek için giriş yapın</p>
+        </div>
         
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
             {% if category == 'error' %}
-            <div style="padding: 1rem; margin-bottom: 1rem; border-radius: 0.25rem; background-color: #fee2e2; color: #b91c1c;">
+            <div style="padding: 1rem; margin-bottom: 1.5rem; border-radius: 0.5rem; background-color: #fee2e2; color: #b91c1c; font-size: 0.875rem; display: flex; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; flex-shrink: 0;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
             {% else %}
-            <div style="padding: 1rem; margin-bottom: 1rem; border-radius: 0.25rem; background-color: #d1fae5; color: #065f46;">
+            <div style="padding: 1rem; margin-bottom: 1.5rem; border-radius: 0.5rem; background-color: #d1fae5; color: #065f46; font-size: 0.875rem; display: flex; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; flex-shrink: 0;">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
             {% endif %}
                 {{ message }}
             </div>
@@ -24,11 +42,19 @@
         <form method="POST" action="{{ url_for('auth.login') }}">
             {{ form.hidden_tag() }}
             
-            <div style="margin-bottom: 1rem;">
-                <label for="username" style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.25rem;">Username</label>
-                {{ form.username(style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.25rem; font-size: 1rem;") }}
+            <div style="margin-bottom: 1.5rem;">
+                <label for="username" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Kullanıcı Adı</label>
+                <div style="position: relative;">
+                    <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    {{ form.username(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Kullanıcı adınızı girin", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                </div>
                 {% if form.username.errors %}
-                <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem;">
+                <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
                     {% for error in form.username.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
@@ -37,10 +63,18 @@
             </div>
             
             <div style="margin-bottom: 1.5rem;">
-                <label for="password" style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.25rem;">Password</label>
-                {{ form.password(style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.25rem; font-size: 1rem;") }}
+                <label for="password" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Şifre</label>
+                <div style="position: relative;">
+                    <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    {{ form.password(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Şifrenizi girin", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                </div>
                 {% if form.password.errors %}
-                <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem;">
+                <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
                     {% for error in form.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
@@ -48,14 +82,14 @@
                 {% endif %}
             </div>
             
-            <div>
-                {{ form.submit(style="width: 100%; padding: 0.5rem 1rem; border-radius: 0.25rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background-color 0.15s ease; border: none; display: inline-block; background-color: #3b82f6; color: white;") }}
+            <div style="margin-top: 2rem;">
+                {{ form.submit(style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; display: inline-block; background-color: #3b82f6; color: white; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);", value="Giriş Yap", onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-2px)'", onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'") }}
             </div>
         </form>
         
-        <div style="margin-top: 1rem; text-align: center;">
-            <p style="font-size: 0.875rem; color: #4b5563;">
-                Don't have an account? <a href="{{ url_for('auth.register') }}" style="color: #3b82f6; text-decoration: none;">Register here</a>
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <p style="font-size: 0.875rem; color: #6b7280;">
+                Hesabınız yok mu? <a href="{{ url_for('auth.register') }}" style="color: #3b82f6; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#3b82f6'">Kayıt Olun</a>
             </p>
         </div>
     </div>

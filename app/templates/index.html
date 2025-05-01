@@ -3,57 +3,93 @@
 {% block title %}Home - Python Pro Level Instructor Exam{% endblock %}
 
 {% block content %}
-<div style="max-width: 1120px; margin: 0 auto;">
+<div style="max-width: 1120px; margin: 0 auto; padding: 0 1rem;">
     <div style="text-align: center; margin-bottom: 3rem;">
-        <h1 style="font-size: 2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Python Pro Level Instructor Exam</h1>
-        <p style="font-size: 1.25rem; color: #4b5563;">Test your knowledge in various Python topics</p>
+        <h1 style="font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 800; color: #1f2937; margin-bottom: 1rem;">Python Pro Level Instructor Exam</h1>
+        <p style="font-size: clamp(1rem, 3vw, 1.25rem); color: #4b5563; max-width: 600px; margin: 0 auto;">Test your knowledge in various Python topics to become a certified instructor</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
         <!-- Exam Topics -->
-        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
-            <h2 style="font-size: 1.25rem; font-weight: 600; color: #2563eb; margin-bottom: 0.75rem;">Discord.py</h2>
-            <p style="color: #4b5563; margin-bottom: 1rem;">Test your knowledge in Discord bot development</p>
-            <a href="{{ url_for('quiz.start', topic='discord') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; background-color: #ebf5ff; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                </div>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #2563eb; margin: 0;">Discord.py</h2>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 1rem; height: 3rem;">Test your knowledge in Discord bot development</p>
+            <a href="{{ url_for('quiz.start', topic='discord') }}" style="display: inline-block; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#2563eb';" onmouseout="this.style.backgroundColor='#3b82f6';">Start Exam</a>
         </div>
 
-        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
-            <h2 style="font-size: 1.25rem; font-weight: 600; color: #10b981; margin-bottom: 0.75rem;">Flask Web Development</h2>
-            <p style="color: #4b5563; margin-bottom: 1rem;">Test your Flask framework knowledge</p>
-            <a href="{{ url_for('quiz.start', topic='flask') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; background-color: #ecfdf5; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </div>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #10b981; margin: 0;">Flask Web Development</h2>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 1rem; height: 3rem;">Test your Flask framework knowledge</p>
+            <a href="{{ url_for('quiz.start', topic='flask') }}" style="display: inline-block; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#059669';" onmouseout="this.style.backgroundColor='#10b981';">Start Exam</a>
         </div>
 
-        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
-            <h2 style="font-size: 1.25rem; font-weight: 600; color: #8b5cf6; margin-bottom: 0.75rem;">Artificial Intelligence</h2>
-            <p style="color: #4b5563; margin-bottom: 1rem;">Test your AI development skills</p>
-            <a href="{{ url_for('quiz.start', topic='ai') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #8b5cf6; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; background-color: #f5f3ff; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 12h9"></path><path d="M12 2v10"></path></svg>
+                </div>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #8b5cf6; margin: 0;">Artificial Intelligence</h2>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 1rem; height: 3rem;">Test your AI development skills</p>
+            <a href="{{ url_for('quiz.start', topic='ai') }}" style="display: inline-block; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #8b5cf6; color: white; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#7c3aed';" onmouseout="this.style.backgroundColor='#8b5cf6';">Start Exam</a>
         </div>
 
-        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
-            <h2 style="font-size: 1.25rem; font-weight: 600; color: #ef4444; margin-bottom: 0.75rem;">Computer Vision</h2>
-            <p style="color: #4b5563; margin-bottom: 1rem;">Test your knowledge in image processing</p>
-            <a href="{{ url_for('quiz.start', topic='vision') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; background-color: #fef2f2; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v11h4l-7 7-7-7h4z"></path></svg>
+                </div>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #ef4444; margin: 0;">Computer Vision</h2>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 1rem; height: 3rem;">Test your knowledge in image processing</p>
+            <a href="{{ url_for('quiz.start', topic='vision') }}" style="display: inline-block; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#dc2626';" onmouseout="this.style.backgroundColor='#ef4444';">Start Exam</a>
         </div>
 
-        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
-            <h2 style="font-size: 1.25rem; font-weight: 600; color: #f59e0b; margin-bottom: 0.75rem;">Natural Language Processing</h2>
-            <p style="color: #4b5563; margin-bottom: 1rem;">Test your NLP skills</p>
-            <a href="{{ url_for('quiz.start', topic='nlp') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #f59e0b; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; background-color: #fffbeb; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4m0-4V6"></path></svg>
+                </div>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: #f59e0b; margin: 0;">Natural Language Processing</h2>
+            </div>
+            <p style="color: #4b5563; margin-bottom: 1rem; height: 3rem;">Test your NLP skills</p>
+            <a href="{{ url_for('quiz.start', topic='nlp') }}" style="display: inline-block; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #f59e0b; color: white; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#d97706';" onmouseout="this.style.backgroundColor='#f59e0b';">Start Exam</a>
         </div>
     </div>
 
     <!-- High Scores Section -->
     {% if current_user.is_authenticated %}
-    <div style="margin-top: 3rem; background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem;">Your Progress</h2>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-            <div style="background-color: #eff6ff; padding: 1rem; border-radius: 0.5rem;">
-                <h3 style="font-size: 1.125rem; font-weight: 600; color: #2563eb;">Highest Score</h3>
-                <p style="font-size: 1.875rem; font-weight: 700; color: #1e40af;">{{ current_user.highest_score }}</p>
+    <div style="margin-top: 3rem; background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            Your Progress
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div style="background-color: #eff6ff; padding: 1.25rem; border-radius: 0.5rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #2563eb; margin-bottom: 0.5rem; display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    Highest Score
+                </h3>
+                <p style="font-size: 2rem; font-weight: 800; color: #1e40af; margin: 0.5rem 0;">{{ current_user.highest_score }}</p>
+                <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Your personal best</p>
             </div>
-            <div style="background-color: #ecfdf5; padding: 1rem; border-radius: 0.5rem;">
-                <h3 style="font-size: 1.125rem; font-weight: 600; color: #10b981;">Last Score</h3>
-                <p style="font-size: 1.875rem; font-weight: 700; color: #065f46;">{{ current_user.last_score }}</p>
+            <div style="background-color: #ecfdf5; padding: 1.25rem; border-radius: 0.5rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #10b981; margin-bottom: 0.5rem; display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Last Score
+                </h3>
+                <p style="font-size: 2rem; font-weight: 800; color: #065f46; margin: 0.5rem 0;">{{ current_user.last_score }}</p>
+                <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Your most recent result</p>
             </div>
         </div>
     </div>
