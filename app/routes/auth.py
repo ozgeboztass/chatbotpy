@@ -5,6 +5,7 @@ from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from app.models.models import User
 from app import db
+from app.utils.security import validate_form_data, check_content_security
 
 # Blueprint tanımı
 bp = Blueprint('auth', __name__)
@@ -34,6 +35,8 @@ class RegisterForm(FlaskForm):
 
 # Routes
 @bp.route('/login', methods=['GET', 'POST'])
+@validate_form_data()
+@check_content_security()
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
@@ -44,6 +47,9 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user)
             next_page = request.args.get('next')
+            # Güvenlik kontrolü: next parametresi geçerli mi?
+            if next_page and not next_page.startswith('/'):
+                next_page = None
             return redirect(next_page if next_page else url_for('main.index'))
         else:
             flash('Invalid username or password', 'error')
@@ -51,6 +57,8 @@ def login():
     return render_template('login.html', form=form)
 
 @bp.route('/register', methods=['GET', 'POST'])
+@validate_form_data()
+@check_content_security()
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))

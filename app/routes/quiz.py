@@ -3,12 +3,17 @@ from flask_login import current_user, login_required
 from app.models.models import Question, Answer, QuizResult, User
 from app import db
 from sqlalchemy import desc
+from app.utils.security import validate_form_data, check_content_security, sanitize_input
 
 bp = Blueprint('quiz', __name__, url_prefix='/quiz')
 
 @bp.route('/start/<topic>')
 @login_required
+@check_content_security()
 def start(topic):
+    # Güvenlik kontrolü: Konu girişini temizle
+    topic = sanitize_input(topic)
+    
     # Kontrol et, geçerli bir konu mu?
     valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp']
     if topic not in valid_topics:
@@ -25,8 +30,19 @@ def start(topic):
 
 @bp.route('/submit', methods=['POST'])
 @login_required
+@validate_form_data()
+@check_content_security()
 def submit():
     topic = request.form.get('topic')
+    
+    # Güvenlik kontrolü: Konu girişini temizle
+    topic = sanitize_input(topic)
+    
+    # Geçerli konu kontrolü
+    valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp']
+    if topic not in valid_topics:
+        flash('Invalid quiz topic!', 'error')
+        return redirect(url_for('main.index'))
     
     # Konuya ait tüm soruları getir
     questions = Question.query.filter_by(topic=topic).all()
@@ -38,19 +54,55 @@ def submit():
     
     for question in questions:
         user_answer_id = request.form.get(f'question_{question.id}')
+        
+        # Kullanıcı bir cevap vermiş mi kontrol et
         if user_answer_id:
-            user_answer = Answer.query.get(user_answer_id)
-            is_correct = user_answer.is_correct
-            
-            if is_correct:
-                score += 1
-            
+            try:
+                # Cevap ID'sini sayı olarak doğrula
+                user_answer_id = int(user_answer_id)
+                
+                # Cevap gerçekten bu soruya ait mi kontrol et
+                user_answer = Answer.query.filter_by(id=user_answer_id, question_id=question.id).first()
+                
+                if user_answer:
+                    is_correct = user_answer.is_correct
+                    
+                    if is_correct:
+                        score += 1
+                    
+                    processed_questions.append({
+                        'id': question.id, 
+                        'question_text': question.question_text,
+                        'user_answer': user_answer.answer_text,
+                        'correct_answer': question.correct_answer,
+                        'is_correct': is_correct
+                    })
+                else:
+                    # Geçersiz cevap, boş ekle
+                    processed_questions.append({
+                        'id': question.id, 
+                        'question_text': question.question_text,
+                        'user_answer': "No answer",
+                        'correct_answer': question.correct_answer,
+                        'is_correct': False
+                    })
+            except (ValueError, TypeError):
+                # Hatalı ID formatı, boş cevap ekle
+                processed_questions.append({
+                    'id': question.id, 
+                    'question_text': question.question_text,
+                    'user_answer': "Invalid answer",
+                    'correct_answer': question.correct_answer,
+                    'is_correct': False
+                })
+        else:
+            # Cevap verilmemiş, boş ekle
             processed_questions.append({
                 'id': question.id, 
                 'question_text': question.question_text,
-                'user_answer': user_answer.answer_text,
+                'user_answer': "No answer",
                 'correct_answer': question.correct_answer,
-                'is_correct': is_correct
+                'is_correct': False
             })
     
     # Sonuçları veritabanına kaydet
