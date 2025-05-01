@@ -4,7 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Python Pro Level Instructor Exam{% endblock %}</title>
-    {{ tailwind.load() }}
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Extra styling to ensure Tailwind works properly -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .container {
+                @apply max-w-6xl mx-auto px-4;
+            }
+            .btn {
+                @apply px-4 py-2 rounded font-medium focus:outline-none transition duration-150 ease-in-out;
+            }
+            .btn-blue {
+                @apply bg-blue-500 text-white hover:bg-blue-600;
+            }
+            .btn-green {
+                @apply bg-green-500 text-white hover:bg-green-600;
+            }
+            .btn-red {
+                @apply bg-red-500 text-white hover:bg-red-600;
+            }
+            .btn-purple {
+                @apply bg-purple-500 text-white hover:bg-purple-600;
+            }
+            .btn-yellow {
+                @apply bg-yellow-500 text-white hover:bg-yellow-600;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
     <!-- Header -->
@@ -15,10 +42,10 @@
                 <div class="flex items-center space-x-4">
                     {% if current_user.is_authenticated %}
                         <span class="text-gray-700">Welcome, {{ current_user.username }}</span>
-                        <a href="{{ url_for('auth.logout') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</a>
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-red">Logout</a>
                     {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
-                        <a href="{{ url_for('auth.register') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Register</a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-blue">Login</a>
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-green">Register</a>
                     {% endif %}
                 </div>
             </div>
