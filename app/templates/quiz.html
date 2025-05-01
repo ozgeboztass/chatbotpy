@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz - {{ topic|title }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">{{ topic|title }} Quiz</h1>
+            <div class="text-right">
+                <p class="text-sm text-gray-600">Question <span id="current-question">1</span> of <span id="total-questions">{{ questions|length }}</span></p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                    <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <form id="quiz-form" method="POST" action="{{ url_for('quiz.submit') }}">
+            <input type="hidden" name="topic" value="{{ topic }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+            {% for question in questions %}
+            <div class="question-container {% if loop.index != 1 %}hidden{% endif %}" data-question-id="{{ question.id }}">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-4">{{ question.question_text }}</h2>
+                    
+                    <div class="space-y-3">
+                        {% for answer in question.answers %}
+                        <div class="flex items-center">
+                            <input type="radio" 
+                                   name="question_{{ question.id }}" 
+                                   value="{{ answer.id }}" 
+                                   id="answer_{{ answer.id }}"
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                            <label for="answer_{{ answer.id }}" 
+                                   class="ml-2 text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-50 p-2 rounded w-full">
+                                {{ answer.answer_text }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-between mt-6">
+                <button type="button" 
+                        id="prev-btn" 
+                        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 hidden">
+                    Previous
+                </button>
+                <button type="button" 
+                        id="next-btn" 
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Next
+                </button>
+                <button type="submit" 
+                        id="submit-btn" 
+                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden">
+                    Submit Quiz
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const questions = document.querySelectorAll('.question-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const currentQuestionSpan = document.getElementById('current-question');
+    let currentQuestion = 0;
+
+    function updateButtons() {
+        prevBtn.classList.toggle('hidden', currentQuestion === 0);
+        nextBtn.classList.toggle('hidden', currentQuestion === questions.length - 1);
+        submitBtn.classList.toggle('hidden', currentQuestion !== questions.length - 1);
+        
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        currentQuestionSpan.textContent = currentQuestion + 1;
+    }
+
+    function showQuestion(index) {
+        questions.forEach((q, i) => {
+            q.classList.toggle('hidden', i !== index);
+        });
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+            updateButtons();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            updateButtons();
+        }
+    });
+
+    updateButtons();
+});
+</script>
+{% endblock %} 

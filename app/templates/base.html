@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Python Pro Level Instructor Exam{% endblock %}</title>
+    {{ tailwind.load() }}
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="{{ url_for('main.index') }}" class="text-2xl font-bold text-blue-600">Python Pro Exam</a>
+                <div class="flex items-center space-x-4">
+                    {% if current_user.is_authenticated %}
+                        <span class="text-gray-700">Welcome, {{ current_user.username }}</span>
+                        <a href="{{ url_for('auth.logout') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
+                        <a href="{{ url_for('auth.register') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="text-sm">Created by Python Pro Level Instructor Team</p>
+                <p class="text-xs mt-2">© 2024 All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
