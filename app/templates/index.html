@@ -9,6 +9,23 @@
         <p style="font-size: clamp(1rem, 3vw, 1.25rem); color: #4b5563; max-width: 600px; margin: 0 auto;">Test your knowledge in various Python topics to become a certified instructor</p>
     </div>
 
+    <!-- Tam Sınav Butonu -->
+    <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.05); padding: 2rem; margin-bottom: 3rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; transition: transform 0.3s; animation: fadeIn 0.5s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.05)';">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+            <div style="width: 5rem; height: 5rem; border-radius: 9999px; background-color: #f0f7ff; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                    <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                </svg>
+            </div>
+            <h2 style="font-size: 1.75rem; font-weight: 800; color: #1f2937; margin: 0;">Tam Python Pro Sınavı</h2>
+        </div>
+        <p style="color: #4b5563; font-size: 1.125rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Tüm Python konularını kapsayan tam sınavı başlatın ve Python Pro Eğitmeni olmak için bilginizi test edin!</p>
+        <a href="{{ url_for('quiz.start', topic='all') }}" style="display: inline-block; padding: 0.875rem 2.5rem; border-radius: 0.5rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 700; font-size: 1.125rem; transition: all 0.2s; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);" onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(59, 130, 246, 0.3)';" onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(59, 130, 246, 0.25)';">Tüm Sınavı Başlat</a>
+    </div>
+
+    <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1.5rem; text-align: center;">Konuya Göre Sınavlar</h2>
+
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
         <!-- Exam Topics -->
         <div style="background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 15px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)';">

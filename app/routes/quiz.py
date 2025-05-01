@@ -7,6 +7,19 @@ from app.utils.security import validate_form_data, check_content_security, sanit
 
 bp = Blueprint('quiz', __name__, url_prefix='/quiz')
 
+@bp.route('/all')
+@login_required
+@check_content_security()
+def all_questions():
+    # Tüm soruları getir
+    questions = Question.query.all()
+    
+    # Soruların cevaplarını getir
+    for question in questions:
+        question.answers = Answer.query.filter_by(question_id=question.id).all()
+    
+    return render_template('quiz.html', topic='all', questions=questions)
+
 @bp.route('/start/<topic>')
 @login_required
 @check_content_security()
@@ -15,10 +28,14 @@ def start(topic):
     topic = sanitize_input(topic)
     
     # Kontrol et, geçerli bir konu mu?
-    valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp']
+    valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp', 'all']
     if topic not in valid_topics:
         flash('Invalid quiz topic!', 'error')
         return redirect(url_for('main.index'))
+    
+    # Eğer 'all' ise tüm soruları getir
+    if topic == 'all':
+        return all_questions()
     
     # Konuya ait soruları getir
     questions = Question.query.filter_by(topic=topic).all()
@@ -38,14 +55,20 @@ def submit():
     # Güvenlik kontrolü: Konu girişini temizle
     topic = sanitize_input(topic)
     
-    # Geçerli konu kontrolü
-    valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp']
-    if topic not in valid_topics:
-        flash('Invalid quiz topic!', 'error')
-        return redirect(url_for('main.index'))
+    # Tüm 'hepsi' veya geçerli konu kontrolü
+    if topic == 'all':
+        # Tüm sorular için sonuçları işle
+        questions = Question.query.all()
+    else:
+        # Geçerli konu kontrolü
+        valid_topics = ['discord', 'flask', 'ai', 'vision', 'nlp']
+        if topic not in valid_topics:
+            flash('Invalid quiz topic!', 'error')
+            return redirect(url_for('main.index'))
+        
+        # Konuya ait tüm soruları getir
+        questions = Question.query.filter_by(topic=topic).all()
     
-    # Konuya ait tüm soruları getir
-    questions = Question.query.filter_by(topic=topic).all()
     total_questions = len(questions)
     score = 0
     
