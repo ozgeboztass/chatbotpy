@@ -3,57 +3,57 @@
 {% block title %}Home - Python Pro Level Instructor Exam{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
-    <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">Python Pro Level Instructor Exam</h1>
-        <p class="text-xl text-gray-600">Test your knowledge in various Python topics</p>
+<div style="max-width: 1120px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="font-size: 2rem; font-weight: bold; color: #1f2937; margin-bottom: 1rem;">Python Pro Level Instructor Exam</h1>
+        <p style="font-size: 1.25rem; color: #4b5563;">Test your knowledge in various Python topics</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem;">
         <!-- Exam Topics -->
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-xl font-semibold text-blue-600 mb-3">Discord.py</h2>
-            <p class="text-gray-600 mb-4">Test your knowledge in Discord bot development</p>
-            <a href="{{ url_for('quiz.start', topic='discord') }}" class="inline-block btn btn-blue">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; color: #2563eb; margin-bottom: 0.75rem;">Discord.py</h2>
+            <p style="color: #4b5563; margin-bottom: 1rem;">Test your knowledge in Discord bot development</p>
+            <a href="{{ url_for('quiz.start', topic='discord') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-xl font-semibold text-green-600 mb-3">Flask Web Development</h2>
-            <p class="text-gray-600 mb-4">Test your Flask framework knowledge</p>
-            <a href="{{ url_for('quiz.start', topic='flask') }}" class="inline-block btn btn-green">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; color: #10b981; margin-bottom: 0.75rem;">Flask Web Development</h2>
+            <p style="color: #4b5563; margin-bottom: 1rem;">Test your Flask framework knowledge</p>
+            <a href="{{ url_for('quiz.start', topic='flask') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-xl font-semibold text-purple-600 mb-3">Artificial Intelligence</h2>
-            <p class="text-gray-600 mb-4">Test your AI development skills</p>
-            <a href="{{ url_for('quiz.start', topic='ai') }}" class="inline-block btn-purple btn">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; color: #8b5cf6; margin-bottom: 0.75rem;">Artificial Intelligence</h2>
+            <p style="color: #4b5563; margin-bottom: 1rem;">Test your AI development skills</p>
+            <a href="{{ url_for('quiz.start', topic='ai') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #8b5cf6; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-xl font-semibold text-red-600 mb-3">Computer Vision</h2>
-            <p class="text-gray-600 mb-4">Test your knowledge in image processing</p>
-            <a href="{{ url_for('quiz.start', topic='vision') }}" class="inline-block btn-red btn">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; color: #ef4444; margin-bottom: 0.75rem;">Computer Vision</h2>
+            <p style="color: #4b5563; margin-bottom: 1rem;">Test your knowledge in image processing</p>
+            <a href="{{ url_for('quiz.start', topic='vision') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-            <h2 class="text-xl font-semibold text-yellow-600 mb-3">Natural Language Processing</h2>
-            <p class="text-gray-600 mb-4">Test your NLP skills</p>
-            <a href="{{ url_for('quiz.start', topic='nlp') }}" class="inline-block btn-yellow btn">Start Exam</a>
+        <div style="background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1.5rem; transition: box-shadow 0.15s ease;">
+            <h2 style="font-size: 1.25rem; font-weight: 600; color: #f59e0b; margin-bottom: 0.75rem;">Natural Language Processing</h2>
+            <p style="color: #4b5563; margin-bottom: 1rem;">Test your NLP skills</p>
+            <a href="{{ url_for('quiz.start', topic='nlp') }}" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 0.25rem; background-color: #f59e0b; color: white; text-decoration: none; font-weight: 500;">Start Exam</a>
         </div>
     </div>
 
     <!-- High Scores Section -->
     {% if current_user.is_authenticated %}
-    <div class="mt-12 bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Progress</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-blue-50 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold text-blue-600">Highest Score</h3>
-                <p class="text-3xl font-bold text-blue-800">{{ current_user.highest_score }}</p>
+    <div style="margin-top: 3rem; background-color: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 1.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem;">Your Progress</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+            <div style="background-color: #eff6ff; padding: 1rem; border-radius: 0.5rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #2563eb;">Highest Score</h3>
+                <p style="font-size: 1.875rem; font-weight: 700; color: #1e40af;">{{ current_user.highest_score }}</p>
             </div>
-            <div class="bg-green-50 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold text-green-600">Last Score</h3>
-                <p class="text-3xl font-bold text-green-800">{{ current_user.last_score }}</p>
+            <div style="background-color: #ecfdf5; padding: 1rem; border-radius: 0.5rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #10b981;">Last Score</h3>
+                <p style="font-size: 1.875rem; font-weight: 700; color: #065f46;">{{ current_user.last_score }}</p>
             </div>
         </div>
     </div>
