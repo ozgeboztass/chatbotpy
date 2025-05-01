@@ -30,10 +30,10 @@
                         <div style="width: 2rem; height: 2rem; border-radius: 9999px; background-color: #3b82f6; color: white; display: flex; align-items: center; justify-content: center; margin-right: 0.5rem; font-weight: 600; font-size: 0.875rem;">{{ current_user.username[0]|upper }}</div>
                         <span style="color: #374151; font-weight: 500; margin-right: 1rem;">{{ current_user.username }}</span>
                     </div>
-                    <a href="{{ url_for('auth.logout') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#dc2626'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#ef4444'; this.style.transform='translateY(0)'">Çıkış</a>
+                    <a href="{{ url_for('auth.logout') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #ef4444; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#dc2626'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#ef4444'; this.style.transform='translateY(0)'">Logout</a>
                 {% else %}
-                    <a href="{{ url_for('auth.login') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'">Giriş</a>
-                    <a href="{{ url_for('auth.register') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)'">Kayıt Ol</a>
+                    <a href="{{ url_for('auth.login') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #3b82f6; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='translateY(0)'">Login</a>
+                    <a href="{{ url_for('auth.register') }}" style="padding: 0.5rem 1.25rem; border-radius: 0.5rem; background-color: #10b981; color: white; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)'">Register</a>
                 {% endif %}
             </div>
         </nav>
@@ -56,21 +56,21 @@
                         Python Pro Exam
                     </h3>
                     <p style="color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
-                        Python Pro seviyesi eğitmenleri için hazırlanmış kapsamlı sınav platformu. Discord.py, Flask, Yapay Zeka, Bilgisayarlı Görü ve Doğal Dil İşleme alanlarında kendinizi test edin.
+                        Comprehensive exam platform designed for Python Pro level instructors. Test yourself in Discord.py, Flask, Artificial Intelligence, Computer Vision, and Natural Language Processing.
                     </p>
                 </div>
                 <div style="flex: 1; min-width: 250px;">
-                    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Hızlı Bağlantılar</h3>
+                    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem;">Quick Links</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('main.index') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Ana Sayfa</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='discord') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Discord.py Sınavı</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='flask') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Flask Sınavı</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='ai') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Yapay Zeka Sınavı</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('main.index') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='discord') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Discord.py Quiz</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='flask') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Flask Quiz</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="{{ url_for('quiz.start', topic='ai') }}" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">Artificial Intelligence Quiz</a></li>
                     </ul>
                 </div>
             </div>
             <div style="border-top: 1px solid #334155; padding-top: 1.5rem; margin-top: 1rem; text-align: center;">
-                <p style="font-size: 0.875rem; color: #94a3b8;">@ozgeboztass tararfından geliştirilmiştir                    üm hakları saklıdır.</p>
+                <p style="font-size: 0.875rem; color: #94a3b8;">Developed by @ozgeboztass. All rights reserved.</p>
             </div>
         </div>
     </footer>

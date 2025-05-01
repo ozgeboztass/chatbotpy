@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Kayıt Ol{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
 <div style="max-width: 28rem; margin: 0 auto; padding: 1rem;">
@@ -14,8 +14,8 @@
                     <line x1="23" y1="11" x2="17" y2="11"></line>
                 </svg>
             </div>
-            <h1 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0;">Hesap Oluştur</h1>
-            <p style="color: #6b7280; margin-top: 0.5rem;">Python Pro Seviyesine ulaşmak için ilk adımı atın</p>
+            <h1 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0;">Create Account</h1>
+            <p style="color: #6b7280; margin-top: 0.5rem;">Take the first step to reach Python Pro Level</p>
         </div>
         
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -45,7 +45,7 @@
             {{ form.hidden_tag() }}
             
             <div style="margin-bottom: 1.5rem;">
-                <label for="username" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Kullanıcı Adı</label>
+                <label for="username" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Username</label>
                 <div style="position: relative;">
                     <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -53,7 +53,7 @@
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </div>
-                    {{ form.username(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Kullanıcı adınızı belirleyin", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                    {{ form.username(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Choose your username", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
                 </div>
                 {% if form.username.errors %}
                 <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
@@ -65,7 +65,7 @@
             </div>
             
             <div style="margin-bottom: 1.5rem;">
-                <label for="email" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">E-posta Adresi</label>
+                <label for="email" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Email Address</label>
                 <div style="position: relative;">
                     <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -73,7 +73,7 @@
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
                     </div>
-                    {{ form.email(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="ornek@example.com", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                    {{ form.email(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="example@example.com", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
                 </div>
                 {% if form.email.errors %}
                 <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
@@ -85,7 +85,7 @@
             </div>
             
             <div style="margin-bottom: 1.5rem;">
-                <label for="password" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Şifre</label>
+                <label for="password" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Password</label>
                 <div style="position: relative;">
                     <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -93,7 +93,7 @@
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
                     </div>
-                    {{ form.password(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="En az 8 karakter", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                    {{ form.password(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="At least 8 characters", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
                 </div>
                 {% if form.password.errors %}
                 <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
@@ -105,14 +105,14 @@
             </div>
             
             <div style="margin-bottom: 2rem;">
-                <label for="confirm_password" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Şifreyi Doğrula</label>
+                <label for="confirm_password" style="display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem;">Confirm Password</label>
                 <div style="position: relative;">
                     <div style="position: absolute; left: 0.75rem; top: 0.7rem; color: #9ca3af;">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                     </div>
-                    {{ form.confirm_password(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Şifrenizi tekrar girin", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
+                    {{ form.confirm_password(style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.875rem; box-sizing: border-box; transition: border-color 0.2s;", placeholder="Enter your password again", onFocus="this.style.borderColor='#3b82f6'; this.style.outline='none';", onBlur="this.style.borderColor='#e5e7eb';") }}
                 </div>
                 {% if form.confirm_password.errors %}
                 <div style="color: #dc2626; font-size: 0.875rem; margin-top: 0.5rem;">
@@ -124,13 +124,13 @@
             </div>
             
             <div>
-                {{ form.submit(style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; display: inline-block; background-color: #10b981; color: white; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);", value="Kayıt Ol", onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)'", onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)'") }}
+                {{ form.submit(style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; display: inline-block; background-color: #10b981; color: white; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);", value="Register", onmouseover="this.style.backgroundColor='#059669'; this.style.transform='translateY(-2px)'", onmouseout="this.style.backgroundColor='#10b981'; this.style.transform='translateY(0)'") }}
             </div>
         </form>
         
         <div style="margin-top: 1.5rem; text-align: center;">
             <p style="font-size: 0.875rem; color: #6b7280;">
-                Zaten hesabınız var mı? <a href="{{ url_for('auth.login') }}" style="color: #3b82f6; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#3b82f6'">Giriş Yapın</a>
+                Already have an account? <a href="{{ url_for('auth.login') }}" style="color: #3b82f6; text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#3b82f6'">Login</a>
             </p>
         </div>
     </div>

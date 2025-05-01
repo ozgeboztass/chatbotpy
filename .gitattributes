@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.db text eol=lf
+*.db binary
+*.db text eol=lf
+.vnev
+
