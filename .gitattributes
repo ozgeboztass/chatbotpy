@@ -3,5 +3,19 @@
 *.db text eol=lf
 *.db binary
 *.db text eol=lf
-.vnev
-
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.venv binary 
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.venv binary
+.venv text eol=lf
+.
